@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="">
+            <label for="txtus">User name</label>
+            <input type="text" id="txtus" placeholder="User name">
+            <br>
+            <label for="txtmk">Password</label>
+            <input type="password" id="txtmk" placeholder="Password">
+            <br>
+            <input type="radio" name="sex" value="male">Male
+            <input type="radio" name="sex" value="female">Female
+            <br>
+            <input type="checkbox" value="Trung Nguyen">Trung Nguyen
+            <br>
+            <input type="checkbox" value="Me Kong">Me Kong
+            <br>
+            <input type="checkbox" value="New Blue">New Blue
+            <br>
+            <input type="checkbox" value="Tra Sua">Tra Sua
+            <br>
+            <input type="submit" value="Submit" onclick="nhap();return false;">
+            <br>
+        </form>
+    </div>
+    <script>
+        function nhap(){
+            var username=document.getElementById('txtus').value;
+            var password=document.getElementById('txtmk').value;
+
+            if(!username || !password){
+                alert("Please fill out all fields");
+                return;
+            }
+
+            var gtinh;
+            var listsex=document.querySelectorAll("input[type='radio']");
+            listsex.forEach(function(ra){
+                if(ra.checked) gtinh= ra.value;
+            });
+
+            var cafe=[];
+            var list=document.querySelectorAll("input[type='checkbox']");
+            list.forEach(function(chk){
+                if(chk.checked) cafe.push(chk.value);
+            });
+            
+            var w=window.open('info.html');
+            localStorage.setItem('us',username);
+            localStorage.setItem('pd',password);
+            localStorage.setItem('cf',JSON.stringify(cafe));
+            localStorage.setItem('sex',gtinh);
+        }
+    </script>
+</body>
+</html>
